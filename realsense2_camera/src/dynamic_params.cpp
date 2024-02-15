@@ -4,7 +4,7 @@ namespace realsense2_camera
 {
     Parameters::Parameters(rclcpp::Node& node) :
     _node(node),
-    _logger(node.get_logger()),
+    _logger(rclcpp::get_logger("RealSenseCameraNode")),
     _params_backend(node)
     {
         _params_backend.add_on_set_parameters_callback(
