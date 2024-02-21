@@ -32,7 +32,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 import sys
 import pathlib
 sys.path.append(str(pathlib.Path(__file__).parent.absolute()))
-import rs_launch
+import realsense_config_launch
 
 local_parameters = [{'name': 'camera_name1', 'default': 'camera1', 'description': 'camera unique name'},
                     {'name': 'camera_name2', 'default': 'camera2', 'description': 'camera unique name'},
@@ -50,12 +50,12 @@ def duplicate_params(general_params, posix):
     
 
 def generate_launch_description():
-    params1 = duplicate_params(rs_launch.configurable_parameters, '1')
-    params2 = duplicate_params(rs_launch.configurable_parameters, '2')
+    params1 = duplicate_params(realsense_config_launch.configurable_parameters, '1')
+    params2 = duplicate_params(realsense_config_launch.configurable_parameters, '2')
     return LaunchDescription(
-        rs_launch.declare_configurable_parameters(local_parameters) +
-        rs_launch.declare_configurable_parameters(params1) + 
-        rs_launch.declare_configurable_parameters(params2) + 
+        realsense_config_launch.declare_configurable_parameters(local_parameters) +
+        realsense_config_launch.declare_configurable_parameters(params1) + 
+        realsense_config_launch.declare_configurable_parameters(params2) + 
         [
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/rs_launch.py']),
